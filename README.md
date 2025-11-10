@@ -1,59 +1,86 @@
-🧬 Kidney Stone Prediction using Machine Learning and AI
+# 🧠 **Kidney Stone Prediction using Machine Learning**
 
-This project applies Artificial Intelligence (AI) and Machine Learning (ML) techniques to predict the presence of kidney stones based on various biochemical and physiological parameters.
-Using multiple algorithms and automated model comparison, the study identifies the most accurate model for early and reliable detection of kidney stones.
+## 📘 **Project Overview**
 
-📋 Project Overview
+This project demonstrates a **machine learning pipeline** for predicting **kidney stone disease** based on clinical and chemical parameters.
+It utilizes **Python**, **Pandas**, **Scikit-Learn**, **Seaborn**, and **TensorFlow**, offering **data preprocessing**, **exploratory data analysis (EDA)**, **visualization**, and **model comparison** using **LazyPredict** to identify the most accurate classifier.
 
-The dataset includes 90 patient records and 7 key features, such as urine gravity, pH, osmolality, conductivity, urea, calcium, and a binary target indicating kidney stone presence (1) or absence (0).
+---
 
-Through data exploration, visualization, correlation analysis, and model benchmarking, this project aims to determine which algorithm performs best for this medical diagnosis task.
+## ⚙️ **Dataset Description**
 
-⚙️ Workflow Summary
+The dataset contains **90 samples** with the following features:
 
-Data Cleaning and Preparation
+* **gravity**
+* **ph**
+* **osmo**
+* **cond**
+* **urea**
+* **calc**
+* **target** → *(0 = No Stone, 1 = Stone)*
 
-Removed unnecessary columns (Unnamed: 0)
+✅ **No missing or duplicate values** detected.
+✅ **Data is clean and ready for modeling.**
 
-Verified no missing values or duplicates
+---
 
-Dataset contained 90 clean and balanced entries
+## 📊 **Exploratory Data Analysis (EDA)**
 
-Exploratory Data Analysis (EDA)
+* **Pair plots** and **heatmaps** were used to understand correlations.
+* **Strong correlations** observed:
 
-Used Seaborn and Matplotlib for visualization.
+  * `gravity` ↔ `osmo` (**r = 0.85**)
+  * `urea` ↔ `osmo` (**r = 0.89**)
+  * `calc` ↔ `target` (**r = 0.46**)
 
-Created pair plots, correlation heatmaps, and relationship plots.
+These correlations suggest that **urine concentration and calcium levels** are key indicators for **kidney stone formation**.
 
-Observed strong correlations:
+---
 
-osmo ↔ urea (0.89)
+## 🤖 **Model Training and Evaluation**
 
-gravity ↔ osmo (0.85)
+Using **LazyPredict**, multiple supervised machine learning algorithms were automatically tested and compared.
 
-calc ↔ target (0.46)
+### **Top Performing Models**
 
-Insights: Higher calcium concentration and urine gravity are often linked to kidney stones.
+| Model                      | Accuracy | F1 Score | ROC AUC  | Time (s) |
+| -------------------------- | -------- | -------- | -------- | -------- |
+| **XGBClassifier**          | **0.89** | **0.89** | **0.89** | 0.04     |
+| **CalibratedClassifierCV** | **0.89** | **0.89** | **0.87** | 0.02     |
+| **ExtraTreesClassifier**   | **0.85** | **0.85** | **0.86** | 0.06     |
+| **KNeighborsClassifier**   | **0.85** | **0.85** | **0.84** | **0.01** |
+| **LinearSVC**              | **0.85** | **0.85** | **0.84** | 0.01     |
 
-Data Splitting
+---
 
-Split data into:
+## 🏆 **Best Model Selection**
 
-Training set: 70%
+After reviewing model performance, the **K-Nearest Neighbors (KNN) Classifier** was chosen due to:
 
-Test set: 30%
+* **High accuracy (85%)**
+* **Fastest training time (0.01 seconds)**
+* **Stable and interpretable results**
 
-Used train_test_split() with a fixed random state for reproducibility.
+### **Final Model Configuration**
 
-🤖 Model Benchmarking with LazyPredict
+```python
+KNeighborsClassifier(n_neighbors=10, leaf_size=5)
+```
 
-To identify the best algorithm efficiently, the LazyClassifier from lazypredict was used to automatically train and compare multiple models.
+---
 
-Top Performing Models:
+## 📈 **Key Results**
 
-Model	Accuracy	Balanced Accuracy	ROC AUC	F1 Score	Time Taken (s)
-XGBClassifier	0.89	0.89	0.89	0.89	0.04
-CalibratedClassifierCV	0.89	0.87	0.87	0.89	0.02
-ExtraTreesClassifier	0.85	0.86	0.86	0.85	0.06
-LinearSVC	0.85	0.84	0.84	0.85	0.01
-KNeighborsClassifier ✅	0.85	0.84	0.84	0.85	0.01
+* **Accuracy:** **85%**
+* **Balanced Accuracy:** **84%**
+* **F1 Score:** **0.85**
+* **Training Time:** **0.01 seconds**
+
+---
+
+## 🧩 **Conclusion**
+
+**The K-Nearest Neighbors algorithm proved to be the most efficient and accurate model** for predicting kidney stone disease using this dataset.
+Its **speed, simplicity, and interpretability** make it ideal for clinical prediction tasks and real-world deployment scenarios.
+
+---
