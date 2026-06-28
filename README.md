@@ -1,3 +1,5 @@
+> *Educational project (2023). For production RAG/LLM work see [Electron](https://github.com/msabbaszadeh/Electron); for large-scale healthcare ML see [Cardiovascular ML](https://github.com/msabbaszadeh/Machine-learning-DNN-ETC-on-cardiovascular-disease-patients-data).*
+
 # 🧠 **Kidney Stone Prediction using Machine Learning**
 
 ## 📘 **Project Overview**
